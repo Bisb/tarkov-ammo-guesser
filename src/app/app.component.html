@@ -19,7 +19,7 @@
 
       <div class="row" *ngIf="api.$loaded|async">
         <div class="col-12">
-          <button class="btn btn-outline-secondary d-block ms-auto" (click)="optionsOpened = !optionsOpened">
+          <button class="btn btn-outline-secondary d-block ms-auto" (click)="optionsOpened = !optionsOpened" aria-label="Options">
             <i class="bi" [class.bi-gear-fill]="!optionsOpened" [class.bi-x-lg]="optionsOpened"></i>
           </button>
         </div>
@@ -29,3 +29,5 @@
     </div>
   </div>
 </div>
+
+<app-library></app-library>

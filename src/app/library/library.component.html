@@ -1,0 +1,15 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Library</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="mb-3">
+        <button *ngFor="let caliber of api.calibers" class="btn btn-outline-primary mb-2 me-2">{{caliber.name}}</button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+<button class="btn btn-lg btn-outline-primary" (click)="open(content)" #button>Launch demo modal</button>
