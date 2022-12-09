@@ -24,6 +24,10 @@ export class OptionsComponent {
     this.onChange.emit();
   }
 
+  selectAllCalibers() {
+    this.optionService.ignoredCalibers = [];
+  }
+
   toggleLimitedChoice() {
     this.optionService.limitedChoice = !this.optionService.limitedChoice;
     this.onChange.emit();
