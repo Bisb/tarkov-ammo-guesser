@@ -59,6 +59,7 @@ export class OptionService {
 
   set showCaliber(value: boolean) {
     this._showCaliber = value;
+    localStorage.setItem(this.showCaliberKey, JSON.stringify(value));
   }
 
   private loadShowCaliber(): boolean {

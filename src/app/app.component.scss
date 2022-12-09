@@ -2,3 +2,10 @@
   max-width: 600px;
   margin: auto;
 }
+
+.spinner-border {
+  $size: 4rem;
+  width: $size;
+  height: $size;
+  font-size: 2rem;
+}

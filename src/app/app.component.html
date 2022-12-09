@@ -6,7 +6,17 @@
 
   <div class="card mt-4 shadow border-primary border-opacity-50">
     <div class="card-body">
-      <h2 *ngIf="!(api.$loaded|async)">Loading ...</h2>
+      <div *ngIf="!(api.$loaded|async)">
+        <div class="text-center">
+          <div class="spinner-border text-primary mt-5 mb-3" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+        <h2 class="text-center text-secondary text-uppercase mb-5">
+          Loading...
+        </h2>
+      </div>
+
       <div class="row" *ngIf="api.$loaded|async">
         <div class="col-12">
           <button class="btn btn-outline-secondary d-block ms-auto" (click)="optionsOpened = !optionsOpened">
