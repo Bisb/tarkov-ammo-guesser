@@ -1,0 +1,22 @@
+<div class="col-12">
+  <img src="{{ammunition.imageUrl}}" alt="">
+</div>
+<div class="mt-4 col-12">
+  <div class="row">
+    <div class="col-6" [class.col-md-4]="!options.limitedChoice"
+         *ngFor="let similarAmmunition of choices">
+      <button class="btn answer fw-bold"
+              [class.btn-outline-primary]="answer === undefined"
+              [class.btn-success]="answer && ammunition === similarAmmunition"
+              [class.btn-danger]="answer && answer === similarAmmunition && answer !== ammunition"
+              (click)="submit(similarAmmunition)"
+              [disabled]="answer !== undefined"
+      >
+        {{similarAmmunition.name}}
+      </button>
+    </div>
+    <div class="col-12">
+      <button class="btn btn-primary d-block ms-auto" (click)="next()" *ngIf="answer">Next</button>
+    </div>
+  </div>
+</div>

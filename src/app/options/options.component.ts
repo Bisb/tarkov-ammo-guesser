@@ -11,7 +11,6 @@ export class OptionsComponent {
   @Output() onChange = new EventEmitter;
 
   constructor(public optionService: OptionService, public api: ApiService) {
-    console.log(optionService.ignoredCalibers);
   }
 
   toggleCaliber(caliber: string) {

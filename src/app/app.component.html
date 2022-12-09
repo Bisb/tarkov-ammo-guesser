@@ -1,5 +1,7 @@
 <div class="container pb-5">
-  <h1 class="text-center mt-4 text-uppercase">Guess the ammo</h1>
+  <h1 class="text-center mt-4 text-uppercase">
+    Guess the ammo
+  </h1>
   <!--  <h3>Score : {{score}}</h3>-->
 
   <div class="card mt-4 shadow">
@@ -7,31 +9,11 @@
       <h2 *ngIf="!(api.$loaded|async)">Loading ...</h2>
       <div class="row" *ngIf="api.$loaded|async">
         <div class="col-12">
-          <!--                    {{ammunition.name}}-->
-          <img src="{{ammunition.imageUrl}}" alt="">
+          <button class="btn btn-secondary d-block ms-auto" (click)="optionsOpened = !optionsOpened">Options</button>
         </div>
-        <div class="mt-4 col-12">
-          <div class="row">
-            <div class="col-6" [class.col-md-4]="!options.limitedChoice"
-                 *ngFor="let similarAmmunition of choices">
-              <button class="btn answer"
-                      [class.btn-outline-primary]="answer === undefined"
-                      [class.btn-success]="answer && ammunition === similarAmmunition"
-                      [class.btn-danger]="answer && answer === similarAmmunition && answer !== ammunition"
-                      (click)="submit(similarAmmunition)"
-                      [disabled]="answer !== undefined"
-              >
-                {{similarAmmunition.name}}
-              </button>
-            </div>
-            <div class="col">
-              <button class="btn btn-primary d-block ms-auto" (click)="next()" *ngIf="answer">Next</button>
-            </div>
-          </div>
-        </div>
+        <app-game #game *ngIf="!optionsOpened"></app-game>
+        <app-options (onChange)="onOptionChanged()" *ngIf="optionsOpened"></app-options>
       </div>
     </div>
   </div>
-
-  <app-options (onChange)="generateRandomAmmunition()"></app-options>
 </div>

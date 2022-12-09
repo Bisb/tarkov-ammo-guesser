@@ -1,5 +1,6 @@
 <div *ngIf="api.$loaded|async" class="mt-4">
   <div>
+    <p>Filter caliber</p>
     <div class="form-check form-check-inline" *ngFor="let caliber of api.calibers; let i = index">
       <input class="form-check-input" type="checkbox" id="caliber-{{i}}"
              [checked]="!optionService.ignoredCalibers.includes(caliber.name)"
