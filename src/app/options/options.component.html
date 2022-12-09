@@ -1,8 +1,7 @@
 <div *ngIf="api.$loaded|async" class="mt-4">
   <div>
-    <p>Filter caliber</p>
+    <p class="mb-0">Filter caliber</p>
     <div>
-
       <div class="form-check form-check-inline">
         <input class="form-check-input" type="checkbox" id="caliber-all"
                [checked]="optionService.ignoredCalibers.length <= 0"
@@ -18,10 +17,13 @@
       <input class="form-check-input" type="checkbox" id="caliber-{{i}}"
              [checked]="!optionService.ignoredCalibers.includes(caliber.name)"
              [disabled]="!optionService.ignoredCalibers.includes(caliber.name) && api.calibers.length - optionService.ignoredCalibers.length <= 1"
-             (click)="toggleCaliber(caliber.name)">
+             (click)="toggleCaliber(caliber.name, $event)">
       <label class="form-check-label" for="caliber-{{i}}">
         {{caliber.name}}
       </label>
+    </div>
+    <div class="form-text text-white">
+      Hold CTRL to isolate a caliber
     </div>
   </div>
 
@@ -33,9 +35,20 @@
       <label class="form-check-label" for="limited-choice">
         Limited choice
       </label>
-      <div class="form-text text-white">
-        Uncheck this to show every answer possible (harder)
-      </div>
+    </div>
+    <div class="form-text text-white">
+      Uncheck this to show every answer possible (harder)
+    </div>
+  </div>
+
+  <div class="mt-4">
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" id="show-caliber"
+             [checked]="optionService.showCaliber"
+             (click)="toggleShowCaliber()">
+      <label class="form-check-label" for="show-caliber">
+        Show caliber name
+      </label>
     </div>
   </div>
 </div>

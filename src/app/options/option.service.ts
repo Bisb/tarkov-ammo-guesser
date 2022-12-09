@@ -4,15 +4,19 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class OptionService {
-  private readonly favoriteCaliberKey: string = 'favorite_caliber';
+  private readonly favoriteCaliberKey: string = 'ignored_calibers';
   private _ignoredCalibers: string[] = [];
 
   private readonly limitedChoiceKey: string = 'limited_choice';
   private _limitedChoice: boolean = true;
 
+  private readonly showCaliberKey: string = 'show_caliber';
+  private _showCaliber: boolean = true;
+
   constructor() {
     this.ignoredCalibers = this.loadIgnoredCalibers();
     this.limitedChoice = this.loadLimitedChoice();
+    this.showCaliber = this.loadShowCaliber();
   }
 
   get ignoredCalibers(): string[] {
@@ -43,6 +47,22 @@ export class OptionService {
 
   private loadLimitedChoice(): boolean {
     const item = localStorage.getItem(this.limitedChoiceKey);
+    if (item) {
+      return (JSON.parse(item));
+    }
+    return true;
+  }
+
+  get showCaliber(): boolean {
+    return this._showCaliber;
+  }
+
+  set showCaliber(value: boolean) {
+    this._showCaliber = value;
+  }
+
+  private loadShowCaliber(): boolean {
+    const item = localStorage.getItem(this.showCaliberKey);
     if (item) {
       return (JSON.parse(item));
     }

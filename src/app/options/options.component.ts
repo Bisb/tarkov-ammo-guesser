@@ -13,13 +13,21 @@ export class OptionsComponent {
   constructor(public optionService: OptionService, public api: ApiService) {
   }
 
-  toggleCaliber(caliber: string) {
-    if (this.optionService.ignoredCalibers.includes(caliber)) {
-      this.optionService.ignoredCalibers = this.optionService.ignoredCalibers
-        .filter(tCaliber => tCaliber !== caliber)
+  toggleCaliber(caliber: string, event: Event): void {
+    if (event instanceof PointerEvent && event.ctrlKey) {
+      if (!this.optionService.ignoredCalibers.includes(caliber)) {
+        event.preventDefault();
+      }
+      this.optionService.ignoredCalibers = this.api.calibers.filter(tCaliber => tCaliber.name !== caliber)
+        .map(tCaliber => tCaliber.name);
     } else {
-      this.optionService.ignoredCalibers.push(caliber);
-      this.optionService.ignoredCalibers = this.optionService.ignoredCalibers;
+      if (this.optionService.ignoredCalibers.includes(caliber)) {
+        this.optionService.ignoredCalibers = this.optionService.ignoredCalibers
+          .filter(tCaliber => tCaliber !== caliber)
+      } else {
+        this.optionService.ignoredCalibers.push(caliber);
+        this.optionService.ignoredCalibers = this.optionService.ignoredCalibers;
+      }
     }
     this.onChange.emit();
   }
@@ -30,6 +38,11 @@ export class OptionsComponent {
 
   toggleLimitedChoice() {
     this.optionService.limitedChoice = !this.optionService.limitedChoice;
+    this.onChange.emit();
+  }
+
+  toggleShowCaliber() {
+    this.optionService.showCaliber = !this.optionService.showCaliber;
     this.onChange.emit();
   }
 }
