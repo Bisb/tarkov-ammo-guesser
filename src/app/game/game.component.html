@@ -21,7 +21,7 @@
       </button>
     </div>
     <div class="col-12">
-      <button class="btn btn-primary d-block ms-auto text-uppercase" (click)="next()" *ngIf="answer">Next</button>
+      <button class="btn btn-primary d-block ms-auto text-uppercase" [class.invisible]="!answer" (click)="next()">Next</button>
     </div>
   </div>
 </div>
