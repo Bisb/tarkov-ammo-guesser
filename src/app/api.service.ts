@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, map, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable, of, tap } from 'rxjs';
 import { Ammunition } from './models/ammunition';
-import { Caliber } from './models/caliber';
+import { Caliber, caliberNiceNames } from './models/caliber';
 
 @Injectable({
   providedIn: 'root',
@@ -13,12 +13,19 @@ export class ApiService {
   public $loaded: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   private readonly endpoint = 'https://api.tarkov.dev/graphql';
+  private readonly localApiDataKey = 'local_api_data';
+  private readonly cacheValidity = 24 * 60 * 60;
 
   constructor(private http: HttpClient) {
     this.fetchData()
       .subscribe(data => {
         for (const datum of data) {
-          const caliberName = datum.caliber.substring('Caliber'.length);
+          let caliberName = datum.caliber.substring('Caliber'.length);
+          const caliberNiceName = caliberNiceNames.find(niceName => niceName.name === caliberName)
+          if (caliberNiceName) {
+            caliberName = caliberNiceName.niceName;
+          }
+
           let caliber = this.calibers.find(caliber => caliber.name === caliberName);
           if (caliber === undefined) {
             caliber = {name: caliberName, ammunitions: []};
@@ -38,7 +45,12 @@ export class ApiService {
       });
   }
 
-  fetchData(): Observable<any> {
+  private fetchData(): Observable<any> {
+    const localData = this.getLocalData();
+    if (localData) {
+      return of(localData);
+    }
+
     const query = `
       {
         ammo {
@@ -54,6 +66,36 @@ export class ApiService {
     `;
 
     return this.http.post<any>(this.endpoint, JSON.stringify({query: query}))
-      .pipe(map((value: any) => value.data.ammo));
+      .pipe(
+        map((value: any) => value.data.ammo),
+        tap(data => {
+          const json = {
+            lastUpdate: Math.floor(Date.now() / 1000),
+            data: data,
+          };
+          localStorage.setItem(this.localApiDataKey, JSON.stringify(json));
+        }),
+      );
+  }
+
+
+  private getLocalData(): {} | null {
+    const localData = localStorage.getItem(this.localApiDataKey);
+    if (localData) {
+      const parsedLocalData = JSON.parse(localData);
+      const limit = Math.floor(Date.now() / 1000) - this.cacheValidity;
+
+      if (!parsedLocalData.lastUpdate || !parsedLocalData.data) {
+        return null;
+      }
+
+      if (parsedLocalData.lastUpdate < limit) {
+        return null;
+      }
+
+      return parsedLocalData.data;
+    }
+
+    return null;
   }
 }
