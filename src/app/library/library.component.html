@@ -1,15 +1,36 @@
-<ng-template #content let-modal>
+<ng-template let-modal>
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">Library</h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
   </div>
   <div class="modal-body">
-    <form>
-      <div class="mb-3">
-        <button *ngFor="let caliber of api.calibers" class="btn btn-outline-primary mb-2 me-2">{{caliber.name}}</button>
+    <div class="list">
+      <div *ngFor="let caliber of api.calibers; let i = index" class="d-inline-block mb-2 me-2">
+        <input type="radio" class="btn-check" name="caliber" id="caliber-{{i}}" autocomplete="off"
+               (change)="selectCaliber(caliber)"
+               [checked]="selectedCaliber === caliber">
+        <label class="btn btn-outline-primary btn-sm" for="caliber-{{i}}">{{caliber.name}}</label>
       </div>
-    </form>
+    </div>
+    <div class="row" *ngIf="selectedCaliber">
+      <div class="col-12">
+        <hr>
+      </div>
+      <div class="col-12 list">
+        <div *ngFor="let ammunition of selectedCaliber.ammunitions; let i = index" class="d-inline-flex mb-2 me-2">
+          <input type="radio" class="btn-check" name="ammunition" id="ammunition-{{i}}" autocomplete="off"
+                 (change)="selectedAmmunition = ammunition"
+                 [checked]="selectedAmmunition === ammunition">
+          <label class="btn btn-outline-primary btn-sm" for="ammunition-{{i}}">{{ammunition.name}}</label>
+        </div>
+      </div>
+      <div class="col-12 text-center" *ngIf="selectedAmmunition">
+        <img *ngFor="let ammunition of selectedCaliber.ammunitions"
+             src="{{ammunition.imageUrl}}"
+             alt="{{ammunition.name}}"
+             class="img-fluid"
+             [class.d-none]="ammunition !== selectedAmmunition">
+      </div>
+    </div>
   </div>
 </ng-template>
-
-<button class="btn btn-lg btn-outline-primary" (click)="open(content)" #button>Launch demo modal</button>

@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { ApiService } from './api.service';
 import { GameComponent } from './game/game.component';
+import { LibraryComponent } from './library/library.component';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,7 @@ import { GameComponent } from './game/game.component';
 })
 export class AppComponent {
   @ViewChild('game') game!: GameComponent;
+  @ViewChild('library') library!: LibraryComponent;
   optionsOpened: boolean = false;
 
   constructor(public api: ApiService) {

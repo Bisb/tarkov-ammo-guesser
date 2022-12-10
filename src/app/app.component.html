@@ -2,7 +2,6 @@
   <h1 class="text-center mt-4 text-uppercase h2">
     Guess the ammo
   </h1>
-  <!--  <h3>Score : {{score}}</h3>-->
 
   <div class="card mt-4 shadow border-primary border-opacity-50">
     <div class="card-body">
@@ -18,16 +17,21 @@
       </div>
 
       <div class="row" *ngIf="api.$loaded|async">
-        <div class="col-12">
-          <button class="btn btn-outline-secondary d-block ms-auto" (click)="optionsOpened = !optionsOpened" aria-label="Options">
-            <i class="bi" [class.bi-gear-fill]="!optionsOpened" [class.bi-x-lg]="optionsOpened"></i>
-          </button>
+        <div class="col-12 d-flex justify-content-end">
+          <div class="btn-group">
+            <button class="btn btn-outline-secondary" (click)="library.open()" aria-label="Options">
+              <i class="bi bi-mortarboard-fill"></i>
+            </button>
+            <button class="btn btn-outline-secondary" (click)="optionsOpened = !optionsOpened" aria-label="Options">
+              <i class="bi" [class.bi-gear-fill]="!optionsOpened" [class.bi-x-lg]="optionsOpened"></i>
+            </button>
+          </div>
         </div>
         <app-game #game *ngIf="!optionsOpened"></app-game>
         <app-options (onChange)="onOptionChanged()" *ngIf="optionsOpened"></app-options>
+        <app-library #library></app-library>
       </div>
     </div>
   </div>
 </div>
 
-<app-library></app-library>

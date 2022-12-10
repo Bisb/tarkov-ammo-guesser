@@ -1,6 +1,8 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from '../api.service';
+import { Caliber } from '../models/caliber';
+import { Ammunition } from '../models/ammunition';
 
 @Component({
   selector: 'app-library',
@@ -8,16 +10,26 @@ import { ApiService } from '../api.service';
   styleUrls: ['./library.component.scss'],
 })
 export class LibraryComponent {
-  @ViewChild('button') button!: ElementRef;
+  @ViewChild(TemplateRef) template!: TemplateRef<any>;
+
+  public selectedCaliber: Caliber | null = null;
+  public selectedAmmunition: Ammunition | null = null;
 
   constructor(private modalService: NgbModal, public api: ApiService) {
+    this.selectedCaliber = api.calibers[0];
+    this.selectedAmmunition = this.selectedCaliber.ammunitions[0];
   }
 
-  open(content: any) {
-    this.modalService.open(content, {animation: false, modalDialogClass: 'modal-dialog-centered', size: 'xl'});
+  open() {
+    this.modalService.open(this.template, {
+      animation: false,
+      modalDialogClass: 'modal-dialog-centered',
+      fullscreen: 'xxl',
+    });
   }
 
-  ngAfterViewInit() {
-    console.log(this.button.nativeElement.click());
+  selectCaliber(caliber: Caliber) {
+    this.selectedCaliber = caliber;
+    this.selectedAmmunition = caliber.ammunitions[0];
   }
 }
