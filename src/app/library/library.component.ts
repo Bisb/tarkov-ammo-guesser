@@ -23,8 +23,8 @@ export class LibraryComponent {
   open() {
     this.modalService.open(this.template, {
       animation: false,
-      modalDialogClass: 'modal-dialog-centered',
-      fullscreen: 'xxl',
+      size: 'lg',
+      fullscreen: 'lg',
     });
   }
 
