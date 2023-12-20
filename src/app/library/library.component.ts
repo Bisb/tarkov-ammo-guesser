@@ -1,4 +1,4 @@
-import { Component, TemplateRef, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Output, TemplateRef, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from '../api.service';
 import { Caliber } from '../models/caliber';
@@ -11,6 +11,7 @@ import { Ammunition } from '../models/ammunition';
 })
 export class LibraryComponent {
   @ViewChild(TemplateRef) template!: TemplateRef<any>;
+  @Output('onModalOpen') onModalOpen = new EventEmitter();
 
   public selectedCaliber: Caliber | null = null;
   public selectedAmmunition: Ammunition | null = null;
@@ -26,6 +27,7 @@ export class LibraryComponent {
       size: 'lg',
       fullscreen: 'lg',
     });
+    this.onModalOpen.emit();
   }
 
   selectCaliber(caliber: Caliber) {

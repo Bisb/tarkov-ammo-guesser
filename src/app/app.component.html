@@ -29,7 +29,7 @@
         </div>
         <app-game #game *ngIf="!optionsOpened"></app-game>
         <app-options (onChange)="onOptionChanged()" *ngIf="optionsOpened"></app-options>
-        <app-library #library></app-library>
+        <app-library #library (onModalOpen)="optionsOpened = false"></app-library>
       </div>
     </div>
   </div>
