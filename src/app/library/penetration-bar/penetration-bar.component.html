@@ -1,6 +1,6 @@
 <div class="penetration-bar">
   <div class="penetration"
-       [style.left.%]="ammunition.penetrationPower / 70 * 100">{{ ammunition.penetrationPower }}
+       [style.left.%]="min(ammunition.penetrationPower / 70 * 100, 100)">{{ ammunition.penetrationPower }}
   </div>
   <div class="penetration-progress-wrapper rounded">
     <div class="penetration-progress"
