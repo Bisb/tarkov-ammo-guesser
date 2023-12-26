@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
@@ -10,6 +9,7 @@ import { LibraryComponent } from './library/library.component';
 import { PenetrationSortPipe } from './pipes/penetration-sort.pipe';
 import { InformationsComponent } from './library/informations/informations.component';
 import { PenetrationBarComponent } from './library/penetration-bar/penetration-bar.component';
+import { CaliberSortPipe } from './pipes/caliber-sort.pipe';
 
 @NgModule({
   declarations: [
@@ -20,6 +20,7 @@ import { PenetrationBarComponent } from './library/penetration-bar/penetration-b
     PenetrationSortPipe,
     InformationsComponent,
     PenetrationBarComponent,
+    CaliberSortPipe,
   ],
   imports: [
     BrowserModule,

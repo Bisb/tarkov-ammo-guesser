@@ -3,6 +3,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from '../api.service';
 import { Caliber } from '../models/caliber';
 import { Ammunition } from '../models/ammunition';
+import { PenetrationSortPipe } from '../pipes/penetration-sort.pipe';
 
 @Component({
   selector: 'app-library',
@@ -17,8 +18,7 @@ export class LibraryComponent {
   public selectedAmmunition: Ammunition | null = null;
 
   constructor(private modalService: NgbModal, public api: ApiService) {
-    this.selectedCaliber = api.calibers[0];
-    this.selectedAmmunition = this.selectedCaliber.ammunitions[0];
+    this.selectCaliber(api.calibers[0]);
   }
 
   open() {
@@ -32,6 +32,7 @@ export class LibraryComponent {
 
   selectCaliber(caliber: Caliber) {
     this.selectedCaliber = caliber;
-    this.selectedAmmunition = caliber.ammunitions[0];
+    const ammunitions = (new PenetrationSortPipe()).transform(caliber.ammunitions);
+    this.selectedAmmunition = ammunitions[0];
   }
 }
