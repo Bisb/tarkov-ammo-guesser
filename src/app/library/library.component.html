@@ -1,6 +1,6 @@
 <ng-template let-modal>
   <div class="modal-header">
-    <h6 class="modal-title" id="modal-basic-title">Ammo library</h6>
+    <h6 class="modal-title" id="modal-basic-title">Encyclopedia</h6>
     <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
   </div>
   <div class="modal-body">
@@ -9,7 +9,7 @@
         <input type="radio" class="btn-check" name="caliber" id="caliber-{{i}}" autocomplete="off"
                (change)="selectCaliber(caliber)"
                [checked]="selectedCaliber === caliber">
-        <label class="btn btn-outline-primary btn-sm" for="caliber-{{i}}">{{caliber.name}}</label>
+        <label class="btn btn-outline-primary btn-sm" for="caliber-{{i}}">{{ caliber.name }}</label>
       </div>
     </div>
     <div class="row" *ngIf="selectedCaliber">
@@ -17,19 +17,33 @@
         <hr>
       </div>
       <div class="col-12 list">
-        <div *ngFor="let ammunition of selectedCaliber.ammunitions; let i = index" class="d-inline-flex mb-2 me-2">
+        <div *ngFor="let ammunition of selectedCaliber.ammunitions|penetrationSort; let i = index"
+             class="d-inline-flex mb-2 me-2">
           <input type="radio" class="btn-check" name="ammunition" id="ammunition-{{i}}" autocomplete="off"
                  (change)="selectedAmmunition = ammunition"
                  [checked]="selectedAmmunition === ammunition">
-          <label class="btn btn-outline-primary btn-sm" for="ammunition-{{i}}">{{ammunition.name}}</label>
+          <label class="btn btn-outline-primary btn-sm" for="ammunition-{{i}}">{{ ammunition.name }}</label>
         </div>
       </div>
       <div class="col-12 text-center" *ngIf="selectedAmmunition">
-        <img *ngFor="let ammunition of selectedCaliber.ammunitions"
-             src="{{ammunition.imageUrl}}"
-             alt="{{ammunition.name}}"
-             class="img-fluid"
-             [class.d-none]="ammunition !== selectedAmmunition">
+        <div class="row">
+          <div class="col-12 col-md-6 mb-3">
+            <img *ngFor="let ammunition of selectedCaliber.ammunitions"
+                 src="{{ammunition.imageUrl}}"
+                 alt="{{ammunition.name}}"
+                 class="img-fluid"
+                 [class.d-none]="ammunition !== selectedAmmunition">
+          </div>
+          <div class="col-12 col-md-6 order-1 order-md-0 mb-3 mt-md-3">
+            <h5>Informations</h5>
+            <app-informations [ammunition]="selectedAmmunition"></app-informations>
+          </div>
+
+          <div class="col-12 mb-3">
+            <h5>Armor penetration</h5>
+            <app-penetration-bar [ammunition]="selectedAmmunition"></app-penetration-bar>
+          </div>
+        </div>
       </div>
     </div>
   </div>

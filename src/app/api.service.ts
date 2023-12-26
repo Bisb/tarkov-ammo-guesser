@@ -37,7 +37,22 @@ export class ApiService {
             name: item.shortName,
             caliber: caliber,
             imageUrl: item.image512pxLink,
+            tracer: datum.tracer,
+            tracerColor: datum.tracerColor  === 'tracerRed' ? 'red' : (datum.tracerColor === 'tracerGreen' ? 'green' : datum.tracerColor),
+            damage: datum.damage,
+            projectileCount: datum.projectileCount,
+            penetrationPower: datum.penetrationPower,
+            armorDamage: datum.armorDamage,
+            penetrationChance: datum.penetrationChance,
+            fragmentationChance: datum.fragmentationChance,
+            ricochetChance: datum.ricochetChance,
+            accuracyModifier: datum.accuracyModifier,
+            recoilModifier: datum.recoilModifier,
+            initialSpeed: datum.initialSpeed,
+            lightBleedModifier: datum.lightBleedModifier,
+            heavyBleedModifier: datum.heavyBleedModifier,
           } as Ammunition;
+          console.log(ammunition.tracerColor);
           this.ammunitions.push(ammunition);
           caliber.ammunitions.push(ammunition);
         }
@@ -55,7 +70,20 @@ export class ApiService {
       {
         ammo {
           caliber
-          ammoType
+          tracer
+          tracerColor
+          damage
+          projectileCount
+          armorDamage
+          penetrationPower
+          penetrationChance
+          fragmentationChance
+          ricochetChance
+          accuracyModifier
+          recoilModifier
+          initialSpeed
+          lightBleedModifier
+          heavyBleedModifier
           item {
             name
             shortName

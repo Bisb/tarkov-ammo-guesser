@@ -1,0 +1,15 @@
+<div class="penetration-bar">
+  <div class="penetration"
+       [style.left.%]="ammunition.penetrationPower / 70 * 100">{{ ammunition.penetrationPower }}
+  </div>
+  <div class="penetration-progress-wrapper rounded">
+    <div class="penetration-progress"
+         [style.width.%]="ammunition.penetrationPower / 70 * 100"></div>
+  </div>
+  <div class="penetration-step" [style.left.%]="armorClass * 10 / 70 * 100"
+       *ngFor="let armorClass of armorClasses">
+    <div class="armor-class-name">
+      <span class="armor-class-prefix">Class</span> {{ armorClass }}
+    </div>
+  </div>
+</div>

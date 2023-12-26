@@ -1,0 +1,65 @@
+<table class="table">
+  <tr>
+    <td>Tracing</td>
+    <td>
+      {{ ammunition.tracer ? 'Yes' : 'No' }}
+      <span [style.color]="ammunition.tracerColor" *ngIf="ammunition.tracer" class="text-capitalize">
+        ({{ ammunition.tracerColor }})
+      </span>
+    </td>
+  </tr>
+  <tr>
+    <td>Damage</td>
+    <td>{{ ammunition.armorDamage }}</td>
+  </tr>
+  <tr>
+    <td>Armor damage</td>
+    <td>{{ ammunition.armorDamage }}</td>
+  </tr>
+  <tr>
+    <td>Penetration</td>
+    <td>{{ ammunition.penetrationPower }}</td>
+  </tr>
+  <!--              <tr>-->
+  <!--                <td>Penetration chance</td>-->
+  <!--                <td>{{(ammunition.penetrationChance * 100)|number: '1.1-2'}}%</td>-->
+  <!--              </tr>-->
+  <tr>
+    <td>Fragmentation chance</td>
+    <td>{{ (ammunition.fragmentationChance * 100)|number: '1.1-2' }}%</td>
+  </tr>
+  <tr>
+    <td>Ricochet chance</td>
+    <td>{{ (ammunition.ricochetChance * 100)|number: '1.1-2' }}%</td>
+  </tr>
+  <tr>
+    <td>Recoil modifier</td>
+    <td [ngClass]="{
+                  'text-danger': ammunition.recoilModifier > 0,
+                  'text-success': ammunition.recoilModifier < 0
+                }">
+      {{ammunition.recoilModifier > 0 ? '+' : ''}}{{ (ammunition.recoilModifier * 100)|number: '1.1-2' }}
+    </td>
+  </tr>
+  <tr>
+    <td>Accuracy modifier</td>
+    <td [ngClass]="{
+                  'text-danger': ammunition.accuracyModifier < 0,
+                  'text-success': ammunition.accuracyModifier > 0
+                }">
+      {{ammunition.accuracyModifier > 0 ? '+' : ''}}{{ (ammunition.accuracyModifier * 100)|number: '1.1-2' }}%
+    </td>
+  </tr>
+  <tr>
+    <td>Light bleed chance</td>
+    <td>{{ (ammunition.lightBleedModifier * 100)|number: '1.1-2' }}%</td>
+  </tr>
+  <tr>
+    <td>Heavy bleed chance</td>
+    <td>{{ (ammunition.heavyBleedModifier * 100)|number: '1.1-2' }}%</td>
+  </tr>
+  <tr>
+    <td>Initial speed</td>
+    <td>{{ ammunition.initialSpeed }}m/s</td>
+  </tr>
+</table>

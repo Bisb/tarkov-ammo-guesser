@@ -7,6 +7,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { OptionsComponent } from './options/options.component';
 import { GameComponent } from './game/game.component';
 import { LibraryComponent } from './library/library.component';
+import { PenetrationSortPipe } from './pipes/penetration-sort.pipe';
+import { InformationsComponent } from './library/informations/informations.component';
+import { PenetrationBarComponent } from './library/penetration-bar/penetration-bar.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +17,9 @@ import { LibraryComponent } from './library/library.component';
     OptionsComponent,
     GameComponent,
     LibraryComponent,
+    PenetrationSortPipe,
+    InformationsComponent,
+    PenetrationBarComponent,
   ],
   imports: [
     BrowserModule,

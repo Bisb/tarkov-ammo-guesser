@@ -1,0 +1,70 @@
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins";
+
+.penetration-bar {
+  height: 30px;
+  width: 100%;
+  position: relative;
+  margin: 30px auto;
+  font-weight: 600;
+
+  .penetration-progress-wrapper {
+    background-color: #dd333380;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .penetration-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: #00990080;
+  }
+
+  .penetration {
+    position: absolute;
+    width: 100px;
+    transform: translateX(-50%);
+    top: -30px;
+    z-index: 10;
+
+    &:after {
+      content: " ";
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 23px;
+      height: 37px;
+      overflow: hidden;
+      width: 1px;
+      background: white;
+    }
+  }
+
+  .penetration-step {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.25);
+    height: calc(100% - 6px);
+    top: 3px;
+    width: 1px;
+
+    .armor-class-name {
+      .armor-class-prefix {
+        @include media-breakpoint-down(sm) {
+          display: none;
+        }
+      }
+
+      position: absolute;
+      width: 100px;
+      transform: translateX(-50%);
+      bottom: -30px;
+    }
+  }
+}
