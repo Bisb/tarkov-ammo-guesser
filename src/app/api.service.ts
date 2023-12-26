@@ -38,7 +38,7 @@ export class ApiService {
             caliber: caliber,
             imageUrl: item.image512pxLink,
             tracer: datum.tracer,
-            tracerColor: datum.tracerColor  === 'tracerRed' ? 'red' : (datum.tracerColor === 'tracerGreen' ? 'green' : datum.tracerColor),
+            tracerColor: datum.tracerColor === 'tracerRed' ? 'red' : (datum.tracerColor === 'tracerGreen' ? 'green' : datum.tracerColor),
             damage: datum.damage,
             projectileCount: datum.projectileCount,
             penetrationPower: datum.penetrationPower,
@@ -51,6 +51,8 @@ export class ApiService {
             initialSpeed: datum.initialSpeed,
             lightBleedModifier: datum.lightBleedModifier,
             heavyBleedModifier: datum.heavyBleedModifier,
+            wikiLink: datum.item.wikiLink,
+            normalizedName: datum.item.normalizedName
           } as Ammunition;
           console.log(ammunition.tracerColor);
           this.ammunitions.push(ammunition);
@@ -88,6 +90,8 @@ export class ApiService {
             name
             shortName
             image512pxLink
+            wikiLink
+            normalizedName
           }
         }
       }

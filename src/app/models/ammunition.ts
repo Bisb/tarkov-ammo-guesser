@@ -18,4 +18,6 @@ export interface Ammunition {
   initialSpeed: number;
   lightBleedModifier: number;
   heavyBleedModifier: number;
+  wikiLink: string;
+  normalizedName: string;
 }

@@ -38,7 +38,7 @@
                   'text-danger': ammunition.recoilModifier > 0,
                   'text-success': ammunition.recoilModifier < 0
                 }">
-      {{ammunition.recoilModifier > 0 ? '+' : ''}}{{ (ammunition.recoilModifier * 100)|number: '1.1-2' }}
+      {{ ammunition.recoilModifier > 0 ? '+' : '' }}{{ (ammunition.recoilModifier * 100)|number: '1.1-2' }}
     </td>
   </tr>
   <tr>
@@ -47,7 +47,7 @@
                   'text-danger': ammunition.accuracyModifier < 0,
                   'text-success': ammunition.accuracyModifier > 0
                 }">
-      {{ammunition.accuracyModifier > 0 ? '+' : ''}}{{ (ammunition.accuracyModifier * 100)|number: '1.1-2' }}%
+      {{ ammunition.accuracyModifier > 0 ? '+' : '' }}{{ (ammunition.accuracyModifier * 100)|number: '1.1-2' }}%
     </td>
   </tr>
   <tr>
@@ -63,3 +63,8 @@
     <td>{{ ammunition.initialSpeed }}m/s</td>
   </tr>
 </table>
+
+<div class="text-end links">
+  <a href="{{ammunition.wikiLink}}" target="_blank">Wiki</a>
+  <a href="https://tarkov.dev/item/{{ammunition.normalizedName}}" target="_blank">Tarkov.dev</a>
+</div>
