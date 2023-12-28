@@ -52,9 +52,8 @@ export class ApiService {
             lightBleedModifier: datum.lightBleedModifier,
             heavyBleedModifier: datum.heavyBleedModifier,
             wikiLink: datum.item.wikiLink,
-            normalizedName: datum.item.normalizedName
+            normalizedName: datum.item.normalizedName,
           } as Ammunition;
-          console.log(ammunition.tracerColor);
           this.ammunitions.push(ammunition);
           caliber.ammunitions.push(ammunition);
         }
