@@ -130,4 +130,8 @@ export class ApiService {
 
     return null;
   }
+
+  deleteLocalData() {
+    localStorage.removeItem(this.localApiDataKey);
+  }
 }

@@ -45,4 +45,9 @@ export class OptionsComponent {
     this.optionService.showCaliber = !this.optionService.showCaliber;
     this.onChange.emit();
   }
+
+  forceDataRefresh() {
+    this.api.deleteLocalData();
+    window.location.reload();
+  }
 }
