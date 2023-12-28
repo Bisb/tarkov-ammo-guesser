@@ -1,6 +1,20 @@
 .table {
   text-align: start;
 
+  tr {
+    &:nth-of-type(2n) {
+      background-color: #333333;
+    }
+    &:hover{
+      background-color: #3b3b3b;
+
+    }
+  }
+
+  td {
+    padding: 0.1rem 0.5rem;
+  }
+
   td:nth-of-type(1) {
     color: rgb(173, 175, 174);
   }

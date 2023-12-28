@@ -4,6 +4,7 @@ import { ApiService } from '../api.service';
 import { Caliber } from '../models/caliber';
 import { Ammunition } from '../models/ammunition';
 import { PenetrationSortPipe } from '../pipes/penetration-sort.pipe';
+import { CaliberSortPipe } from '../pipes/caliber-sort.pipe';
 
 @Component({
   selector: 'app-library',
@@ -18,7 +19,7 @@ export class LibraryComponent {
   public selectedAmmunition: Ammunition | null = null;
 
   constructor(private modalService: NgbModal, public api: ApiService) {
-    this.selectCaliber(api.calibers[0]);
+    this.selectCaliber((new CaliberSortPipe().transform(api.calibers))[0]);
   }
 
   open() {

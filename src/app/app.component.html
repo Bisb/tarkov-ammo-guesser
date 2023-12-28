@@ -1,44 +1,42 @@
-<div class="container pb-5">
-  <h1 class="text-center mt-4 text-uppercase h2">
-    Guess the ammo
-  </h1>
+<div class="main-grid">
+  <header class="header">
+    <app-header></app-header>
+  </header>
+  <main class="main">
+    <div class="container">
+      <ng-container *ngIf="api.$loaded|async; else loading">
+        <router-outlet></router-outlet>
+      </ng-container>
 
-  <div class="card mt-4 shadow border-primary border-opacity-50">
-    <div class="card-body">
-      <div *ngIf="!(api.$loaded|async)">
-        <div class="text-center">
-          <div class="spinner-border text-primary mt-5 mb-3" role="status">
-            <span class="visually-hidden">Loading...</span>
+      <ng-template #loading>
+        <div class="d-flex align-items-center justify-content-center h-100 w-100">
+          <div class="card mt-4 shadow border-primary border-opacity-50 card-600">
+            <div class="card-body">
+              <div class="text-center">
+                <div class="spinner-border text-primary mt-5 mb-3" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+              </div>
+              <h2 class="text-center text-secondary text-uppercase mb-5">
+                Loading...
+              </h2>
+            </div>
           </div>
         </div>
-        <h2 class="text-center text-secondary text-uppercase mb-5">
-          Loading...
-        </h2>
-      </div>
-
-      <div class="row" *ngIf="api.$loaded|async">
-        <div class="col-12 d-flex justify-content-end">
-          <div class="btn-group">
-            <button class="btn btn-outline-secondary" (click)="library.open()" aria-label="Options">
-              <i class="bi bi-mortarboard-fill"></i>
-            </button>
-            <button class="btn btn-outline-secondary" (click)="optionsOpened = !optionsOpened" aria-label="Options">
-              <i class="bi" [class.bi-gear-fill]="!optionsOpened" [class.bi-x-lg]="optionsOpened"></i>
-            </button>
-          </div>
-        </div>
-        <app-game #game *ngIf="!optionsOpened"></app-game>
-        <app-options (onChange)="onOptionChanged()" *ngIf="optionsOpened"></app-options>
-        <app-library #library (onModalOpen)="optionsOpened = false"></app-library>
-      </div>
+      </ng-template>
     </div>
-  </div>
-
-  <div class="mt-4 text-center">
-    <p class="mb-1">Made with <i class="bi bi-heart"></i> by <a target="_blank" href="https://github.com/Bisb">bisb</a></p>
-    <p class="mb-1">Data and assets provided by <a target="_blank" href="https://tarkov.dev/api">tarkov.dev</a></p>
-    <p class="mb-0"><a target="_blank" href="https://github.com/Bisb/tarkov-ammo-guesser"><i class="bi bi-github"></i></a></p>
-
-  </div>
+  </main>
+  <footer class="footer text-center">
+    <p class="mb-1">
+      Made with <i class="bi bi-heart"></i> by <a target="_blank" href="https://github.com/Bisb">bisb</a>
+    </p>
+    <p class="mb-1">
+      Data and assets provided by <a target="_blank" href="https://tarkov.dev/api">tarkov.dev</a>
+    </p>
+    <p class="mb-0">
+      <a target="_blank" href="https://github.com/Bisb/tarkov-ammo-guesser">
+        <i class="bi bi-github"></i>
+      </a>
+    </p>
+  </footer>
 </div>
-

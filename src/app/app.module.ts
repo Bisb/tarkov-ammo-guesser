@@ -10,6 +10,10 @@ import { PenetrationSortPipe } from './pipes/penetration-sort.pipe';
 import { InformationsComponent } from './library/informations/informations.component';
 import { PenetrationBarComponent } from './library/penetration-bar/penetration-bar.component';
 import { CaliberSortPipe } from './pipes/caliber-sort.pipe';
+import { AppRoutingModule } from './app-routing.module';
+import { HomeComponent } from './home/home.component';
+import { RouterOutlet } from '@angular/router';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -21,11 +25,15 @@ import { CaliberSortPipe } from './pipes/caliber-sort.pipe';
     InformationsComponent,
     PenetrationBarComponent,
     CaliberSortPipe,
+    HomeComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
     NgbModule,
     HttpClientModule,
+    AppRoutingModule,
+    RouterOutlet,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,4 +1,24 @@
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins";
+
 .list {
-  max-height: 15vh;
-  overflow-y: auto;
+  display: flex;
+  flex-wrap: wrap;
+  @include media-breakpoint-down(sm) {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    max-height: 2.5rem;
+    flex-wrap: nowrap;
+    text-wrap: nowrap;
+    max-width: 100%;
+  }
+}
+
+.img-ammo {
+  max-height: 350px;
+}
+
+.card {
+  overflow: hidden;
 }

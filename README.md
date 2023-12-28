@@ -12,4 +12,4 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ## Thanks
 
-Big thanks to [tarkov.dev](https://github.com/the-hideout/tarkov-dev) for their free API
+Big thanks to [tarkov.dev](https://github.com/the-hideout/tarkov-dev) for their huge work powering this whole project

@@ -1,27 +1,33 @@
-<div class="col-12">
-  <div class="position-relative">
-  <p class="fw-bold mb-0 position-absolute top-0 start-0 fs-5" *ngIf="options.showCaliber">
-    {{ammunition.caliber.name}}
-  </p>
-    <img src="{{ammunition.imageUrl}}" alt="">
-  </div>
-</div>
-<div class="mt-4 col-12">
-  <div class="row">
-    <div class="col-6 mb-3" [class.col-sm-4]="!options.limitedChoice"
-         *ngFor="let similarAmmunition of choices">
-      <button class="btn answer fw-bold"
-              [class.btn-outline-primary]="answer === undefined"
-              [class.btn-success]="answer && ammunition === similarAmmunition"
-              [class.btn-danger]="answer && answer === similarAmmunition && answer !== ammunition"
-              (click)="submit(similarAmmunition)"
-              [disabled]="answer !== undefined"
-      >
-        {{similarAmmunition.name}}
-      </button>
-    </div>
+<div class="card shadow border-primary border-opacity-50 card-600">
+  <div class="card-body">
     <div class="col-12">
-      <button class="btn btn-primary d-block ms-auto text-uppercase" [class.invisible]="!answer" (click)="next()">Next</button>
+      <div class="position-relative">
+        <p class="fw-bold mb-0 position-absolute top-0 start-0 fs-5" *ngIf="options.showCaliber">
+          {{ ammunition.caliber.name }}
+        </p>
+        <img src="{{ammunition.imageUrl}}" alt="">
+      </div>
+    </div>
+    <div class="mt-4 col-12">
+      <div class="row">
+        <div class="col-6 mb-3" [class.col-sm-4]="!options.limitedChoice"
+             *ngFor="let similarAmmunition of choices">
+          <button class="btn answer fw-bold"
+                  [class.btn-outline-primary]="answer === undefined"
+                  [class.btn-success]="answer && ammunition === similarAmmunition"
+                  [class.btn-danger]="answer && answer === similarAmmunition && answer !== ammunition"
+                  (click)="submit(similarAmmunition)"
+                  [disabled]="answer !== undefined"
+          >
+            {{ similarAmmunition.name }}
+          </button>
+        </div>
+        <div class="col-12">
+          <button class="btn btn-primary d-block ms-auto text-uppercase" [class.invisible]="!answer" (click)="next()">
+            Next
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -6,6 +6,9 @@
 @import 'bootstrap/scss/bootstrap';
 @import "bootswatch";
 
-.container {
-  max-width: 600px;
+.card-600 {
+  width: 100%;
+  @include media-breakpoint-up(md) {
+    max-width: 600px;
+  }
 }

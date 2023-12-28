@@ -1,11 +1,7 @@
-<ng-template let-modal>
-  <div class="modal-header">
-    <h6 class="modal-title" id="modal-basic-title">Encyclopedia</h6>
-    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
-  </div>
-  <div class="modal-body">
+<div class="card shadow border-primary border-opacity-50">
+  <div class="card-body">
     <div class="list">
-      <div *ngFor="let caliber of api.calibers|caliberSort; let i = index" class="d-inline-block mb-2 me-2">
+      <div *ngFor="let caliber of api.calibers|caliberSort; let i = index" class=" mb-2 me-2">
         <input type="radio" class="btn-check" name="caliber" id="caliber-{{i}}" autocomplete="off"
                (change)="selectCaliber(caliber)"
                [checked]="selectedCaliber === caliber">
@@ -31,7 +27,7 @@
             <img *ngFor="let ammunition of selectedCaliber.ammunitions"
                  src="{{ammunition.imageUrl}}"
                  alt="{{ammunition.name}}"
-                 class="img-fluid"
+                 class="img-ammo img-fluid"
                  [class.d-none]="ammunition !== selectedAmmunition">
           </div>
           <div class="col-12 col-md-6 order-1 order-md-0 mb-3 mt-md-3">
@@ -47,4 +43,4 @@
       </div>
     </div>
   </div>
-</ng-template>
+</div>
