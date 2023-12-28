@@ -65,6 +65,12 @@
 </table>
 
 <div class="text-end links">
-  <a href="{{ammunition.wikiLink}}" target="_blank">Wiki</a>
+  <ng-container *ngIf="ammunition.wikiLink; else wikiUnavailable">
+    <a href="{{ammunition.wikiLink}}" target="_blank">Wiki</a>
+  </ng-container>
+  <ng-template #wikiUnavailable>
+    <span class="text-muted">Wiki (not available yet)</span>
+  </ng-template>
+
   <a href="https://tarkov.dev/item/{{ammunition.normalizedName}}" target="_blank">Tarkov.dev</a>
 </div>
